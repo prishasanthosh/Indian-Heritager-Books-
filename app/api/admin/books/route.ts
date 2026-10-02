@@ -4,6 +4,7 @@ import { auth } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { books } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
+import { bookCategories } from '@/lib/categories'
 
 function isAdmin(email?: string | null) {
   return Boolean(email && (process.env.ADMIN_EMAILS ?? '').split(',').map((value) => value.trim().toLowerCase()).includes(email.toLowerCase()))
@@ -21,7 +22,7 @@ function parseBook(body: Record<string, unknown>) {
   const category = String(body.category ?? '').trim()
   const price = Number(body.price)
   const stock = Number(body.stock ?? 0)
-  if (!title || !author || !category || !Number.isInteger(price) || price < 0 || !Number.isInteger(stock) || stock < 0) return null
+  if (!title || !author || !bookCategories.some((item) => item.value === category) || !Number.isInteger(price) || price < 0 || !Number.isInteger(stock) || stock < 0) return null
   return { title, author, category, price, stock, description: String(body.description ?? '').trim(), cover: String(body.cover ?? '').trim(), badge: String(body.badge ?? '').trim() || null, originalPrice: body.originalPrice ? Number(body.originalPrice) : null, isArchived: Boolean(body.isArchived) }
 }
 

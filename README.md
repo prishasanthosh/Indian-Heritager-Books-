@@ -39,6 +39,8 @@ A full-stack Indian heritage book catalogue and commerce experience inspired by 
 - Add, edit, archive, restore, and delete catalogue items
 - Catalogue visibility and featured-book controls
 - Category, price, stock, description, author, publisher, and metadata management
+- Category selection from the configured catalogue categories
+- Book cover uploads stored in Cloudinary
 - Admin order list and order status controls
 
 ## Technology stack
@@ -105,7 +107,12 @@ Create a local `.env.local` file. Never commit it to Git.
 DATABASE_URL="postgresql://..."
 BETTER_AUTH_SECRET="a-random-secret-at-least-32-characters-long"
 ADMIN_EMAILS="prishasanthosh1@gmail.com"
+CLOUDINARY_CLOUD_NAME="your-cloud-name"
+CLOUDINARY_API_KEY="your-api-key"
+CLOUDINARY_API_SECRET="your-api-secret"
 ```
+
+Configure the Cloudinary values in the deployment environment (and `.env.local` for local development) to enable book cover uploads. Keep `CLOUDINARY_API_SECRET` private; uploads are signed by the server and are limited to JPEG, PNG, or WebP images up to 5 MB.
 
 Optional deployment URL configuration:
 
