@@ -22,8 +22,8 @@ const getInvolvedLinks = [
 export function StoreFooter() {
   return (
     <footer className="bg-[radial-gradient(ellipse_at_top_left,_#12251f_0%,_#031321_50%)] px-5 py-14 text-[#dce5eb] lg:px-8 lg:pt-16">
-      <div className="mx-auto grid max-w-[1400px] gap-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.55fr_0.55fr_1.2fr] lg:gap-12">
-        <div>
+      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.55fr_0.55fr_1.2fr] lg:gap-12">
+        <div className="min-w-0">
           <a href={foundationUrl} className="inline-flex items-center gap-3" aria-label="Indian Heritager Foundation home">
             <img src="/logo.png" alt="" width="56" height="56" className="size-14 rounded-full object-contain" />
             <span>
@@ -31,13 +31,13 @@ export function StoreFooter() {
               <small className="mt-1 block text-[10px] tracking-[0.24em] text-[#aab9c5]">FOUNDATION</small>
             </span>
           </a>
-          <p className="mt-6 max-w-sm text-[15px] leading-6 text-[#c2d0da]">
+          <p className="mt-6 max-w-sm break-words text-[15px] leading-6 text-[#c2d0da]">
             A charitable organisation working in education, environment, sustainability, community development, skill development and livelihoods.
           </p>
-          <address className="mt-6 space-y-3 text-[15px] not-italic text-[#c2d0da]">
-            <p className="flex items-center gap-3"><MapPin size={17} className="shrink-0 text-[#a52f17]" aria-hidden="true" />Coimbatore, Tamil Nadu, India</p>
-            <a className="flex items-center gap-3 hover:text-white" href="tel:+917904140033"><Phone size={17} className="shrink-0 text-[#a52f17]" aria-hidden="true" />+91 7904140033</a>
-            <a className="flex items-center gap-3 hover:text-white" href="mailto:info@indianheritager.org"><Mail size={17} className="shrink-0 text-[#a52f17]" aria-hidden="true" />info@indianheritager.org</a>
+          <address className="mt-6 min-w-0 space-y-3 text-[15px] not-italic text-[#c2d0da]">
+            <p className="flex min-w-0 items-center gap-3"><MapPin size={17} className="shrink-0 text-[#a52f17]" aria-hidden="true" /><span className="min-w-0 break-words">Coimbatore, Tamil Nadu, India</span></p>
+            <a className="flex min-w-0 items-center gap-3 hover:text-white" href="tel:+917904140033"><Phone size={17} className="shrink-0 text-[#a52f17]" aria-hidden="true" /><span className="min-w-0 break-words">+91 7904140033</span></a>
+            <a className="flex min-w-0 items-center gap-3 hover:text-white" href="mailto:info@indianheritager.org"><Mail size={17} className="shrink-0 text-[#a52f17]" aria-hidden="true" /><span className="min-w-0 break-all">info@indianheritager.org</span></a>
           </address>
           <div className="mt-7 flex gap-2.5" aria-label="Social media">
             {['Facebook', 'Instagram', 'Twitter', 'YouTube', 'LinkedIn'].map((name) => (
@@ -49,21 +49,21 @@ export function StoreFooter() {
           </div>
         </div>
 
-        <nav aria-label="Quick links">
+        <nav aria-label="Quick links" className="min-w-0">
           <h2 className="text-base font-bold text-white">Quick Links</h2>
           <ul className="mt-4 space-y-3 text-[15px] text-[#c2d0da]">
             {quickLinks.map(([label, href]) => <li key={label}><a className="hover:text-white" href={href}>{label}</a></li>)}
           </ul>
         </nav>
 
-        <nav aria-label="Get involved">
+        <nav aria-label="Get involved" className="min-w-0">
           <h2 className="text-base font-bold text-white">Get Involved</h2>
           <ul className="mt-4 space-y-3 text-[15px] text-[#c2d0da]">
             {getInvolvedLinks.map(([label, href]) => <li key={label}><a className="hover:text-white" href={href}>{label}</a></li>)}
           </ul>
         </nav>
 
-        <div>
+        <div className="min-w-0">
           <h2 className="text-base font-bold text-white">Stories in your inbox</h2>
           <p className="mt-4 text-[15px] leading-6 text-[#c2d0da]">A monthly letter from the field — no noise, just impact.</p>
           <form action="mailto:info@indianheritager.org" method="post" encType="text/plain" className="mt-5 flex items-center rounded-full border border-[#283b49] bg-[#10202d] p-1.5">
@@ -78,7 +78,7 @@ export function StoreFooter() {
       </div>
 
       <div className="mx-auto mt-14 flex max-w-[1400px] flex-col gap-4 border-t border-[#1e3240] pt-6 text-sm text-[#9aabb9] sm:flex-row sm:items-center sm:justify-between">
-        <p>© 2026 Indian Heritager Foundation. All rights reserved.</p>
+        <p className="break-words">© 2026 Indian Heritager Foundation. All rights reserved.</p>
         <nav aria-label="Legal" className="flex flex-wrap gap-x-6 gap-y-2">
           <a className="hover:text-white" href={`${foundationUrl}/privacy-policy`}>Privacy Policy</a>
           <a className="hover:text-white" href={`${foundationUrl}/terms-and-conditions`}>Terms &amp; Conditions</a>

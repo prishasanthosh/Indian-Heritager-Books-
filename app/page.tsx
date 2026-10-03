@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { ArrowRight, BookOpen, ChevronDown, Search, ShoppingBag, Star, UserRound, X } from 'lucide-react'
+import { ArrowRight, BookOpen, ChevronDown, Menu, Search, ShoppingBag, Star, UserRound, X } from 'lucide-react'
 import { useSession } from '@/lib/auth-client'
 import { bookCategories } from '@/lib/categories'
 
@@ -53,56 +53,72 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-[#f8f5ee] text-[#000000]">
       {notice && <div role="status" className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 bg-[#173d38] px-5 py-3 text-sm font-semibold text-white shadow-xl">{notice}</div>}
-      <div className="bg-[#173d38] px-5 py-2.5 text-center text-[11px] font-semibold tracking-[0.12em] text-[#f4c532] sm:text-xs">EVERY BOOK PURCHASE SUPPORTS INDIAN HERITAGER FOUNDATION&apos;S COMMUNITY PROGRAMMES</div>
+      <div className="bg-[#173d38] px-3 py-2 text-center text-[9px] font-semibold leading-relaxed tracking-[0.1em] text-[#f4c532] sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-[0.12em]">EVERY BOOK PURCHASE SUPPORTS INDIAN HERITAGER FOUNDATION&apos;S COMMUNITY PROGRAMMES</div>
       <header className="sticky top-0 z-20 border-b border-[#e9e4d9] bg-[#fbfaf6]">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-5 px-5 py-4 lg:px-8">
-          <a href="#top" className="flex shrink-0 items-center gap-3" aria-label="Indian Heritager Foundation home">
-            <img src="/logo.png" alt="Indian Heritager Foundation" width="58" height="58" className="size-14 shrink-0 rounded-full object-contain" />
-            <span className="hidden leading-none sm:block"><strong className="block font-sans text-[18px] font-extrabold tracking-tight">Indian Heritager</strong><small className="mt-1 block text-[10px] tracking-[0.23em] text-[#000000]">FOUNDATION</small></span>
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-1 px-2 py-3 sm:gap-5 sm:px-5 sm:py-4 lg:px-8">
+          <a href="#top" className="flex shrink-0 items-center gap-2 sm:gap-3" aria-label="Indian Heritager Foundation home">
+            <img src="/logo.png" alt="Indian Heritager Foundation" width="58" height="58" className="size-10 shrink-0 rounded-full object-contain sm:size-14" />
+            <span className="leading-none">
+              <strong className="block whitespace-nowrap font-sans text-[13px] font-extrabold tracking-tight sm:text-[18px]">Indian Heritager</strong>
+              <small className="mt-1 block whitespace-nowrap text-[8px] tracking-[0.06em] text-[#000000] sm:text-[10px] sm:tracking-[0.12em]">Foundation - Books</small>
+            </span>
           </a>
-          <nav aria-label="Main navigation" className={`${mobileMenu ? 'flex' : 'hidden'} absolute left-0 right-0 top-full flex-col gap-4 border-b border-[#e9e4d9] bg-[#fbfaf6] px-5 py-5 text-sm font-medium text-[#000000] lg:static lg:flex lg:flex-row lg:items-center lg:gap-7 lg:border-0 lg:bg-transparent lg:p-0`}>
+          <nav aria-label="Main navigation" className="hidden items-center gap-7 text-sm font-medium text-[#000000] xl:flex">
             <a href="/" className="border-b-2 border-[#f4bb20] pb-2 lg:-mb-2">Home</a>
             <a href="/#categories" className="hover:text-[#a86f00]">Categories</a>
             <a href="https://www.indianheritager.org/about" className="hover:text-[#a86f00]">About Us</a>
           </nav>
-          <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
+          <div className="ml-auto flex shrink-0 items-center gap-0.5 sm:gap-3">
             <label className="hidden h-10 w-[190px] items-center gap-2 rounded-full border border-[#e5dfd3] bg-white px-3 text-[#071321] xl:flex">
               <Search size={18} aria-hidden="true" />
               <span className="sr-only">Search books</span>
               <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search books…" className="w-full bg-transparent text-sm outline-none placeholder:text-[#858b8e]" />
             </label>
-            <a href="/books" aria-label="Search books" className="grid size-10 place-items-center rounded-full hover:bg-[#f1eadb] xl:hidden"><Search size={20} /></a>
-            <button onClick={() => setShowCart(true)} className="relative grid size-10 place-items-center rounded-full hover:bg-[#f1eadb]" aria-label={`Cart, ${cart.length} books`}><ShoppingBag size={21}/>{cart.length > 0 && <span className="absolute -right-1 -top-1 grid size-4 place-items-center rounded-full bg-[#c26742] text-[10px] text-white">{cart.length}</span>}</button>
+            <button onClick={() => setShowCart(true)} className="relative grid size-9 place-items-center rounded-full hover:bg-[#f1eadb] sm:size-10" aria-label={`Cart, ${cart.length} books`}><ShoppingBag size={21}/>{cart.length > 0 && <span className="absolute -right-1 -top-1 grid size-4 place-items-center rounded-full bg-[#c26742] text-[10px] text-white">{cart.length}</span>}</button>
             {session?.user ? <>
-              <a href="/account" aria-label="My account" className="hidden items-center gap-2 rounded-full bg-[#f4bb20] px-4 py-2.5 text-sm font-bold text-[#101e29] transition hover:bg-[#ffd044] sm:inline-flex"><UserRound size={16} /> My account</a>
-              <a href="/account" aria-label="My account" className="grid size-10 place-items-center rounded-full hover:bg-[#f1eadb] sm:hidden"><UserRound size={19}/></a>
+              <a href="/account" aria-label="My account" className="hidden items-center gap-2 rounded-full bg-[#f4bb20] px-4 py-2.5 text-sm font-bold text-[#101e29] transition hover:bg-[#ffd044] xl:inline-flex"><UserRound size={16} /> My account</a>
             </> : <>
-              <a href="/sign-in" aria-label="Sign in" className="hidden rounded-full bg-[#f4bb20] px-4 py-2.5 text-sm font-bold text-[#101e29] transition hover:bg-[#ffd044] sm:block">Sign in</a>
-              <a href="/sign-in" aria-label="Sign in" className="grid size-10 place-items-center rounded-full hover:bg-[#f1eadb] sm:hidden"><UserRound size={19}/></a>
+              <a href="/sign-in" aria-label="Sign in" className="hidden rounded-full bg-[#f4bb20] px-4 py-2.5 text-sm font-bold text-[#101e29] transition hover:bg-[#ffd044] xl:block">Sign in</a>
             </>}
-            <button onClick={() => setMobileMenu(!mobileMenu)} className="grid size-10 place-items-center rounded-full hover:bg-[#f1eadb] lg:hidden" aria-label="Toggle menu"><span className="block h-0.5 w-5 bg-[#183d38]"/><span className="mt-1.5 block h-0.5 w-5 bg-[#183d38]"/></button>
+            <button onClick={() => setMobileMenu(!mobileMenu)} className="grid size-9 place-items-center rounded-full hover:bg-[#f1eadb] sm:size-10 xl:hidden" aria-label={mobileMenu ? 'Close menu' : 'Open menu'}>{mobileMenu ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
           </div>
         </div>
+        {mobileMenu && <div className="border-t border-[#e9e4d9] bg-[#fbfaf6] px-4 py-4 xl:hidden">
+          <nav aria-label="Mobile navigation" className="flex flex-col gap-1 text-sm font-medium text-[#183d38]">
+            <a href="/" onClick={() => setMobileMenu(false)} className="rounded px-3 py-3 hover:bg-[#f1eadb]">Home</a>
+            <a href="/#categories" onClick={() => setMobileMenu(false)} className="rounded px-3 py-3 hover:bg-[#f1eadb]">Categories</a>
+            <a href="https://www.indianheritager.org/about" onClick={() => setMobileMenu(false)} className="rounded px-3 py-3 hover:bg-[#f1eadb]">About Us</a>
+          </nav>
+          <form action="/books" className="mt-3 flex h-11 items-center gap-2 border border-[#dcd3c2] bg-white px-3">
+            <Search size={18} aria-hidden="true" />
+            <label className="sr-only" htmlFor="mobile-book-search">Search books</label>
+            <input id="mobile-book-search" name="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search books, authors…" className="min-w-0 flex-1 bg-transparent text-sm outline-none" />
+            <button type="submit" aria-label="Submit book search" className="grid size-8 place-items-center"><ArrowRight size={17} /></button>
+          </form>
+          <a href={session?.user ? '/account' : '/sign-in'} onClick={() => setMobileMenu(false)} className="mt-3 flex items-center gap-2 rounded bg-[#f4bb20] px-4 py-3 text-sm font-bold text-[#101e29]">
+            <UserRound size={17} aria-hidden="true" /> {session?.user ? 'My account' : 'Sign in'}
+          </a>
+        </div>}
       </header>
 
-      <section id="top" className="relative flex min-h-[560px] items-center overflow-hidden bg-[#173d38] px-5 py-16 text-[#fbfaf6] sm:min-h-[620px] lg:min-h-[660px] lg:px-8">
+      <section id="top" className="relative flex min-h-[520px] items-center overflow-hidden bg-[#173d38] px-5 py-14 text-[#fbfaf6] sm:min-h-[620px] sm:py-16 lg:min-h-[660px] lg:px-8">
         <img src="/hero-education.jpg" alt="A teacher sharing a book with children" className="absolute inset-0 size-full object-cover object-[58%_48%]" />
         <div className="absolute inset-0 bg-[#10251f]/55" />
         <div className="relative mx-auto w-full max-w-[1280px]">
-          <p className="mb-5 text-xs font-bold tracking-[0.24em] text-[#f4c532]">THE INDIAN HERITAGER BOOKSHOP</p>
-          <h1 className="max-w-3xl font-serif text-5xl leading-[0.96] sm:text-7xl lg:text-[88px]">Discover stories.<br/><em className="text-[#f4c532]">Preserve heritage.</em></h1>
-          <p className="mt-8 max-w-xl text-base leading-7 text-[#f3f1e9] sm:text-lg">A thoughtfully curated collection of books celebrating knowledge, culture, history and stories from India and beyond.</p>
+          <p className="mb-5 text-[10px] font-bold tracking-[0.2em] text-[#f4c532] sm:text-xs sm:tracking-[0.24em]">THE INDIAN HERITAGER BOOKSHOP</p>
+          <h1 className="max-w-3xl font-serif text-[clamp(2.5rem,10vw,3.75rem)] leading-[0.98] sm:text-7xl lg:text-[88px]">Discover stories.<br/><em className="text-[#f4c532]">Preserve heritage.</em></h1>
+          <p className="mt-6 max-w-xl text-sm leading-6 text-[#f3f1e9] sm:mt-8 sm:text-lg sm:leading-7">A thoughtfully curated collection of books celebrating knowledge, culture, history and stories from India and beyond.</p>
           <div className="mt-9 flex flex-wrap gap-3"><a href="#books" className="inline-flex items-center gap-3 bg-[#c26742] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#d07750]">Browse books <ArrowRight size={17}/></a><a href="#story" className="border border-white/70 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/10">Our story</a></div>
         </div>
       </section>
 
       <section id="categories" className="mx-auto max-w-[1280px] px-5 py-16 lg:px-8 lg:py-24"><div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="mb-3 text-xs font-bold tracking-[0.2em] text-[#c26742]">EXPLORE</p><h2 className="font-serif text-4xl tracking-[-0.03em] sm:text-5xl">Books for every curious mind</h2></div><a href="#books" className="text-sm font-bold text-[#c26742]">VIEW ALL BOOKS <ArrowRight className="ml-1 inline" size={16}/></a></div><div className="mt-9 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">{bookCategories.map((item, i) => <a key={item.slug} href={`/books?category=${item.slug}`} className="group min-h-36 bg-[#e9dfc9] p-5 text-left transition hover:-translate-y-1 hover:bg-[#d9c9a8] focus:outline-none focus:ring-2 focus:ring-[#c26742] sm:min-h-44"><span className="text-3xl text-[#c26742]">{String(i + 1).padStart(2, '0')}</span><strong className="mt-8 block max-w-[150px] font-serif text-xl leading-tight">{item.name}</strong><span className="mt-3 block text-[10px] font-bold tracking-[0.14em] opacity-60 group-hover:text-[#c26742]">EXPLORE →</span></a>)}</div></section>
 
-      <section id="books" className="border-y border-[#e6dfd1] bg-[#fbfaf6] px-5 py-16 lg:px-8 lg:py-24"><div className="mx-auto max-w-[1280px]"><div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between"><div><p className="mb-3 text-xs font-bold tracking-[0.2em] text-[#c26742]">THE COLLECTION</p><h2 className="font-serif text-4xl tracking-[-0.03em] sm:text-5xl">Featured books</h2></div><div className="flex flex-col gap-3 sm:flex-row"><label className="flex h-11 items-center gap-2 border border-[#dcd3c2] bg-[#f5f0e6] px-3 text-[#6e7069] md:hidden"><Search size={17}/><span className="sr-only">Search books</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search books…" className="w-full bg-transparent text-sm outline-none" /></label><select aria-label="Filter by category" value={category} onChange={(e) => setCategory(e.target.value)} className="h-11 border border-[#dcd3c2] bg-[#f5f0e6] px-3 text-sm outline-none">{categories.map((item) => <option key={item}>{item}</option>)}</select><select aria-label="Sort books" value={sort} onChange={(e) => setSort(e.target.value)} className="h-11 border border-[#dcd3c2] bg-[#f5f0e6] px-3 text-sm outline-none"><option>Featured</option><option>Newest</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Rating</option></select></div></div><div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6">{filteredBooks.map((book) => <article key={book.id} className="group"><div className="relative aspect-[3/4] overflow-hidden bg-[#e8dfcf]"><img src={book.cover} alt={`Cover of ${book.title}`} loading="lazy" width="700" height="930" className="size-full object-cover transition duration-500 group-hover:scale-105"/>{book.badge && <span className="absolute left-3 top-3 bg-[#f4c532] px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-[#173d38]">{book.badge}</span>}<button onClick={() => addToCart(book)} className="absolute bottom-3 left-3 right-3 translate-y-2 bg-[#c26742] py-3 text-xs font-bold text-white opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">ADD TO CART</button></div><div className="pt-4"><p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#c26742]">{book.category}</p><h3 className="mt-1 font-serif text-xl leading-tight">{book.title}</h3><p className="mt-1 text-sm text-[#6e7069]">{book.author}</p><div className="mt-3 flex items-center justify-between"><span className="font-bold">₹{book.price.toLocaleString('en-IN')}</span><span className="flex items-center gap-1 text-xs text-[#8b7350]"><Star size={13} fill="currentColor"/> {book.rating}</span></div></div></article>)}</div>{filteredBooks.length === 0 && <div className="py-20 text-center"><BookOpen className="mx-auto mb-4 text-[#c26742]"/><p className="font-serif text-2xl">No books found</p><p className="mt-2 text-sm text-[#6e7069]">Try a different search or category.</p></div>}<div className="mt-14 text-center"><button className="border border-[#c26742] px-6 py-3 text-sm font-bold text-[#c26742] hover:bg-[#c26742] hover:text-white">LOAD MORE BOOKS</button><p className="mt-3 text-xs text-[#85867d]">Showing {filteredBooks.length} of 500+ books · fast, paginated catalogue</p></div></div></section>
+      <section id="books" className="border-y border-[#e6dfd1] bg-[#fbfaf6] px-4 py-12 sm:px-5 sm:py-16 lg:px-8 lg:py-24"><div className="mx-auto max-w-[1280px]"><div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between"><div><p className="mb-3 text-xs font-bold tracking-[0.2em] text-[#c26742]">THE COLLECTION</p><h2 className="font-serif text-4xl tracking-[-0.03em] sm:text-5xl">Featured books</h2></div><div className="flex flex-col gap-3 sm:flex-row"><label className="flex h-11 items-center gap-2 border border-[#dcd3c2] bg-[#f5f0e6] px-3 text-[#6e7069] md:hidden"><Search size={17}/><span className="sr-only">Search books</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search books…" className="w-full bg-transparent text-sm outline-none" /></label><select aria-label="Filter by category" value={category} onChange={(e) => setCategory(e.target.value)} className="h-11 min-w-0 border border-[#dcd3c2] bg-[#f5f0e6] px-3 text-sm outline-none">{categories.map((item) => <option key={item}>{item}</option>)}</select><select aria-label="Sort books" value={sort} onChange={(e) => setSort(e.target.value)} className="h-11 min-w-0 border border-[#dcd3c2] bg-[#f5f0e6] px-3 text-sm outline-none"><option>Featured</option><option>Newest</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Rating</option></select></div></div><div className="mt-8 grid grid-cols-2 gap-x-3 gap-y-8 sm:mt-10 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-6">{filteredBooks.map((book) => <article key={book.id} className="group min-w-0"><div className="relative aspect-[3/4] overflow-hidden bg-[#e8dfcf]"><img src={book.cover} alt={`Cover of ${book.title}`} loading="lazy" width="700" height="930" className="size-full object-cover transition duration-500 group-hover:scale-105"/>{book.badge && <span className="absolute left-3 top-3 bg-[#f4c532] px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-[#173d38]">{book.badge}</span>}<button onClick={() => addToCart(book)} className="absolute bottom-2 left-2 right-2 translate-y-0 bg-[#c26742] py-2.5 text-[10px] font-bold text-white opacity-100 transition sm:bottom-3 sm:left-3 sm:right-3 sm:translate-y-2 sm:py-3 sm:text-xs sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">ADD TO CART</button></div><div className="pt-3 sm:pt-4"><p className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#c26742] sm:text-[11px] sm:tracking-[0.12em]">{book.category}</p><h3 className="mt-1 break-words font-serif text-lg leading-tight sm:text-xl">{book.title}</h3><p className="mt-1 text-xs text-[#6e7069] sm:text-sm">{book.author}</p><div className="mt-3 flex items-center justify-between gap-1"><span className="text-sm font-bold sm:text-base">₹{book.price.toLocaleString('en-IN')}</span><span className="flex shrink-0 items-center gap-1 text-[10px] text-[#8b7350] sm:text-xs"><Star size={13} fill="currentColor"/> {book.rating}</span></div></div></article>)}</div>{filteredBooks.length === 0 && <div className="py-20 text-center"><BookOpen className="mx-auto mb-4 text-[#c26742]"/><p className="font-serif text-2xl">No books found</p><p className="mt-2 text-sm text-[#6e7069]">Try a different search or category.</p></div>}<div className="mt-10 text-center sm:mt-14"><button className="border border-[#c26742] px-6 py-3 text-sm font-bold text-[#c26742] hover:bg-[#c26742] hover:text-white">LOAD MORE BOOKS</button><p className="mt-3 text-xs text-[#85867d]">Showing {filteredBooks.length} of 500+ books · fast, paginated catalogue</p></div></div></section>
 
       <section id="story" className="border-y border-[#e6dfd1] bg-[#f1eadb] px-5 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-16">
-          <div className="relative isolate flex min-h-[390px] items-end overflow-hidden bg-[#173d38] p-7 sm:min-h-[500px] sm:p-10">
+          <div className="relative isolate flex min-h-[320px] items-end overflow-hidden bg-[#173d38] p-5 sm:min-h-[500px] sm:p-10">
             <img src="/hero-education.jpg" alt="A teacher sharing a book with children" className="absolute inset-0 -z-20 size-full object-cover object-[58%_48%]" />
             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#10251f]/90 via-[#10251f]/25 to-[#10251f]/5" />
             <div className="flex w-full items-end justify-between gap-5 border-l-2 border-[#f4c532] pl-5 text-[#fbfaf6] sm:pl-7">
