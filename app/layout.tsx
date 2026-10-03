@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { CartProvider } from '@/components/cart-provider'
+import { StoreFooter } from '@/components/store-footer'
 
 export const metadata: Metadata = {
   title: 'Indian Heritager Books | Discover stories. Preserve heritage.',
@@ -28,7 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body className="antialiased">
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          {children}
+          <StoreFooter />
+        </CartProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

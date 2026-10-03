@@ -29,7 +29,7 @@ export default function Page() {
   const [showCart, setShowCart] = useState(false)
   const [mobileMenu, setMobileMenu] = useState(false)
   const [notice, setNotice] = useState('')
-  const { data: session, isPending } = useSession()
+  const { data: session } = useSession()
 
   const announce = (message: string) => {
     setNotice(message)
@@ -51,23 +51,36 @@ export default function Page() {
   const addToCart = (book: Book) => setCart((current) => current.some((item) => item.id === book.id) ? current : [...current, book])
 
   return (
-    <main className="min-h-screen bg-[#f8f5ee] text-[#183d38]">
+    <main className="min-h-screen bg-[#f8f5ee] text-[#000000]">
       {notice && <div role="status" className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 bg-[#173d38] px-5 py-3 text-sm font-semibold text-white shadow-xl">{notice}</div>}
       <div className="bg-[#173d38] px-5 py-2.5 text-center text-[11px] font-semibold tracking-[0.12em] text-[#f4c532] sm:text-xs">EVERY BOOK PURCHASE SUPPORTS INDIAN HERITAGER FOUNDATION&apos;S COMMUNITY PROGRAMMES</div>
-      <header className="sticky top-0 z-20 border-b border-[#e6dfd1] bg-[#fbfaf6]/95 backdrop-blur">
-        <div className="mx-auto flex max-w-[1280px] items-center gap-5 px-5 py-4 lg:px-8">
-          <a href="#top" className="flex shrink-0 items-center gap-3" aria-label="Indian Heritager Books home">
-            <img src="/logo.png" alt="Indian Heritager Foundation" width="52" height="52" className="size-12 shrink-0 object-contain" />
-            <span className="hidden leading-none sm:block"><strong className="block font-sans text-[17px] font-extrabold tracking-tight">Indian Heritager</strong><small className="mt-1 block text-[9px] font-bold tracking-[0.25em] text-[#c26742]">BOOKS</small></span>
+      <header className="sticky top-0 z-20 border-b border-[#e9e4d9] bg-[#fbfaf6]">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-5 px-5 py-4 lg:px-8">
+          <a href="#top" className="flex shrink-0 items-center gap-3" aria-label="Indian Heritager Foundation home">
+            <img src="/logo.png" alt="Indian Heritager Foundation" width="58" height="58" className="size-14 shrink-0 rounded-full object-contain" />
+            <span className="hidden leading-none sm:block"><strong className="block font-sans text-[18px] font-extrabold tracking-tight">Indian Heritager</strong><small className="mt-1 block text-[10px] tracking-[0.23em] text-[#000000]">FOUNDATION</small></span>
           </a>
-          <nav className={`${mobileMenu ? 'flex' : 'hidden'} absolute left-0 right-0 top-full flex-col gap-4 border-b border-[#e6dfd1] bg-[#fbfaf6] px-5 py-5 text-sm font-semibold lg:static lg:flex lg:flex-row lg:items-center lg:border-0 lg:bg-transparent lg:p-0`}>
-            <a href="#books" className="text-[#c26742]">Books</a><a href="#categories" className="hover:text-[#c26742]">Categories</a><a href="#story" className="hover:text-[#c26742]">Our story</a>
+          <nav aria-label="Main navigation" className={`${mobileMenu ? 'flex' : 'hidden'} absolute left-0 right-0 top-full flex-col gap-4 border-b border-[#e9e4d9] bg-[#fbfaf6] px-5 py-5 text-sm font-medium text-[#000000] lg:static lg:flex lg:flex-row lg:items-center lg:gap-7 lg:border-0 lg:bg-transparent lg:p-0`}>
+            <a href="/" className="border-b-2 border-[#f4bb20] pb-2 lg:-mb-2">Home</a>
+            <a href="/#categories" className="hover:text-[#a86f00]">Categories</a>
+            <a href="https://www.indianheritager.org/about" className="hover:text-[#a86f00]">About Us</a>
           </nav>
-          <div className="ml-auto flex items-center gap-3">
-            <label className="hidden h-11 w-[300px] items-center gap-2 border border-[#dcd3c2] bg-[#f5f0e6] px-3 text-[#6e7069] md:flex"><Search size={17}/><span className="sr-only">Search books</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search books, authors…" className="w-full bg-transparent text-sm outline-none placeholder:text-[#888a82]" /></label>
-            <button onClick={() => setShowCart(true)} className="relative rounded-full p-2 hover:bg-[#f1eadb]" aria-label={`Cart, ${cart.length} books`}><ShoppingBag size={21}/>{cart.length > 0 && <span className="absolute -right-1 -top-1 grid size-4 place-items-center rounded-full bg-[#c26742] text-[10px] text-white">{cart.length}</span>}</button>
-            {!isPending && (session?.user ? <a href="/account" className="hidden items-center gap-2 rounded-full bg-[#f4c532] px-4 py-2.5 text-sm font-bold text-[#183d38] transition hover:bg-[#ffd75c] sm:inline-flex"><UserRound size={16} /> My account</a> : <a href="/sign-in" className="hidden rounded-full bg-[#f4c532] px-5 py-2.5 text-sm font-bold text-[#183d38] transition hover:bg-[#ffd75c] sm:block">Sign in</a>)}
-            <button onClick={() => setMobileMenu(!mobileMenu)} className="p-2 lg:hidden" aria-label="Toggle menu"><span className="block h-0.5 w-5 bg-[#183d38]"/><span className="mt-1.5 block h-0.5 w-5 bg-[#183d38]"/></button>
+          <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
+            <label className="hidden h-10 w-[190px] items-center gap-2 rounded-full border border-[#e5dfd3] bg-white px-3 text-[#071321] xl:flex">
+              <Search size={18} aria-hidden="true" />
+              <span className="sr-only">Search books</span>
+              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search books…" className="w-full bg-transparent text-sm outline-none placeholder:text-[#858b8e]" />
+            </label>
+            <a href="/books" aria-label="Search books" className="grid size-10 place-items-center rounded-full hover:bg-[#f1eadb] xl:hidden"><Search size={20} /></a>
+            <button onClick={() => setShowCart(true)} className="relative grid size-10 place-items-center rounded-full hover:bg-[#f1eadb]" aria-label={`Cart, ${cart.length} books`}><ShoppingBag size={21}/>{cart.length > 0 && <span className="absolute -right-1 -top-1 grid size-4 place-items-center rounded-full bg-[#c26742] text-[10px] text-white">{cart.length}</span>}</button>
+            {session?.user ? <>
+              <a href="/account" aria-label="My account" className="hidden items-center gap-2 rounded-full bg-[#f4bb20] px-4 py-2.5 text-sm font-bold text-[#101e29] transition hover:bg-[#ffd044] sm:inline-flex"><UserRound size={16} /> My account</a>
+              <a href="/account" aria-label="My account" className="grid size-10 place-items-center rounded-full hover:bg-[#f1eadb] sm:hidden"><UserRound size={19}/></a>
+            </> : <>
+              <a href="/sign-in" aria-label="Sign in" className="hidden rounded-full bg-[#f4bb20] px-4 py-2.5 text-sm font-bold text-[#101e29] transition hover:bg-[#ffd044] sm:block">Sign in</a>
+              <a href="/sign-in" aria-label="Sign in" className="grid size-10 place-items-center rounded-full hover:bg-[#f1eadb] sm:hidden"><UserRound size={19}/></a>
+            </>}
+            <button onClick={() => setMobileMenu(!mobileMenu)} className="grid size-10 place-items-center rounded-full hover:bg-[#f1eadb] lg:hidden" aria-label="Toggle menu"><span className="block h-0.5 w-5 bg-[#183d38]"/><span className="mt-1.5 block h-0.5 w-5 bg-[#183d38]"/></button>
           </div>
         </div>
       </header>
@@ -120,8 +133,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-
-      <footer className="bg-[#173d38] px-5 py-12 text-[#e7eee7] lg:px-8"><div className="mx-auto flex max-w-[1280px] flex-col gap-10 sm:flex-row sm:justify-between"><div><div className="flex items-center gap-3"><span className="grid size-10 place-items-center rounded-full bg-[#f4c532] text-[#173d38]"><BookOpen size={19}/></span><strong className="font-serif text-xl">Indian Heritager Books</strong></div><p className="mt-4 max-w-xs text-sm leading-6 text-[#b7c9bd]">A books-only shop from Indian Heritager Foundation, celebrating knowledge, culture and heritage.</p></div><div className="grid grid-cols-2 gap-12 text-sm"><div><p className="mb-4 text-xs font-bold tracking-widest text-[#f4c532]">SHOP</p><a className="block py-1 text-[#b7c9bd] hover:text-white" href="#books">All books</a><a className="block py-1 text-[#b7c9bd] hover:text-white" href="#categories">Categories</a></div><div><p className="mb-4 text-xs font-bold tracking-widest text-[#f4c532]">FOUNDATION</p><a className="block py-1 text-[#b7c9bd] hover:text-white" href="#story">Our story</a><a className="block py-1 text-[#b7c9bd] hover:text-white" href="https://www.indianheritager.org/">Main website</a></div></div></div><div className="mx-auto mt-10 max-w-[1280px] border-t border-[#3e6259] pt-5 text-xs text-[#91aa9e]">© 2026 Indian Heritager Foundation. All rights reserved.</div></footer>
 
       {showCart && <div className="fixed inset-0 z-30 bg-[#173d38]/40" onClick={() => setShowCart(false)}><aside className="absolute right-0 top-0 h-full w-full max-w-md bg-[#fbfaf6] p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}><div className="flex items-center justify-between"><h2 className="font-serif text-3xl">Your cart</h2><button onClick={() => setShowCart(false)} aria-label="Close cart"><X/></button></div>{cart.length === 0 ? <div className="py-24 text-center"><ShoppingBag className="mx-auto mb-4 text-[#c26742]"/><p className="font-serif text-xl">Your cart is empty</p><p className="mt-2 text-sm text-[#6e7069]">Add a book to begin your order.</p></div> : <><div className="mt-8 space-y-4">{cart.map((book) => <div key={book.id} className="flex gap-3 border-b border-[#e6dfd1] pb-4"><img src={book.cover} alt="" className="size-16 object-cover"/><div className="flex-1"><p className="font-serif text-lg leading-tight">{book.title}</p><p className="mt-1 text-sm">₹{book.price.toLocaleString('en-IN')}</p></div><button onClick={() => setCart(cart.filter((item) => item.id !== book.id))} className="self-start text-xs text-[#c26742]">Remove</button></div>)}</div><div className="mt-8 border-t border-[#dcd3c2] pt-5"><div className="flex justify-between font-bold"><span>Subtotal</span><span>₹{cart.reduce((sum, book) => sum + book.price, 0).toLocaleString('en-IN')}</span></div><button onClick={() => announce('Checkout is ready to connect to your payment provider.')} className="mt-5 w-full bg-[#c26742] py-3.5 text-sm font-bold text-white transition hover:bg-[#d07750]">PROCEED TO CHECKOUT</button></div></>}</aside></div>}
     </main>
