@@ -53,14 +53,14 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-[#f8f5ee] text-[#000000]">
       {notice && <div role="status" className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 bg-[#173d38] px-5 py-3 text-sm font-semibold text-white shadow-xl">{notice}</div>}
-      <div className="bg-[#173d38] px-3 py-2 text-center text-[9px] font-semibold leading-relaxed tracking-[0.1em] text-[#f4c532] sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-[0.12em]">EVERY BOOK PURCHASE SUPPORTS INDIAN HERITAGER FOUNDATION&apos;S COMMUNITY PROGRAMMES</div>
+      {/* <div className="bg-[#173d38] px-3 py-2 text-center text-[9px] font-semibold leading-relaxed tracking-[0.1em] text-[#f4c532] sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-[0.12em]">EVERY BOOK PURCHASE SUPPORTS INDIAN HERITAGER FOUNDATION&apos;S COMMUNITY PROGRAMMES</div> */}
       <header className="sticky top-0 z-20 border-b border-[#e9e4d9] bg-[#fbfaf6]">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-1 px-2 py-3 sm:gap-5 sm:px-5 sm:py-4 lg:px-8">
           <a href="#top" className="flex shrink-0 items-center gap-2 sm:gap-3" aria-label="Indian Heritager Foundation home">
-            <img src="/logo.png" alt="Indian Heritager Foundation" width="58" height="58" className="size-10 shrink-0 rounded-full object-contain sm:size-14" />
+            <img src="/logo.png" alt="Indian Heritager Foundation" width="48" height="48" className="size-10 shrink-0 rounded-full object-contain sm:size-12" />
             <span className="leading-none">
-              <strong className="block whitespace-nowrap font-sans text-[13px] font-extrabold tracking-tight sm:text-[18px]">Indian Heritager</strong>
-              <small className="mt-1 block whitespace-nowrap text-[8px] tracking-[0.06em] text-[#000000] sm:text-[10px] sm:tracking-[0.12em]">Foundation - Books</small>
+              <strong className="block whitespace-nowrap font-sans text-[15px] font-bold text-[#183d38]">Indian Heritager</strong>
+              <small className="mt-1 block whitespace-nowrap font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-[#6e7069]">Foundation - Books</small>
             </span>
           </a>
           <nav aria-label="Main navigation" className="hidden items-center gap-7 text-sm font-medium text-[#000000] xl:flex">
@@ -80,6 +80,7 @@ export default function Page() {
             </> : <>
               <a href="/sign-in" aria-label="Sign in" className="hidden rounded-full bg-[#f4bb20] px-4 py-2.5 text-sm font-bold text-[#101e29] transition hover:bg-[#ffd044] xl:block">Sign in</a>
             </>}
+            <a href="https://www.indianheritager.org/give" target="_blank" rel="noopener noreferrer" className="hidden rounded-full bg-[#f4bb20] px-4 py-2.5 text-sm font-semibold text-[#101e29] transition hover:bg-[#ffd044] xl:inline-flex">Donate</a>
             <button onClick={() => setMobileMenu(!mobileMenu)} className="grid size-9 place-items-center rounded-full hover:bg-[#f1eadb] sm:size-10 xl:hidden" aria-label={mobileMenu ? 'Close menu' : 'Open menu'}>{mobileMenu ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
           </div>
         </div>
@@ -88,6 +89,7 @@ export default function Page() {
             <a href="/" onClick={() => setMobileMenu(false)} className="rounded px-3 py-3 hover:bg-[#f1eadb]">Home</a>
             <a href="/#categories" onClick={() => setMobileMenu(false)} className="rounded px-3 py-3 hover:bg-[#f1eadb]">Categories</a>
             <a href="https://www.indianheritager.org/about" onClick={() => setMobileMenu(false)} className="rounded px-3 py-3 hover:bg-[#f1eadb]">About Us</a>
+            <a href="https://www.indianheritager.org/give" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenu(false)} className="mt-1 rounded bg-[#f4bb20] px-3 py-3 font-semibold text-[#101e29] hover:bg-[#ffd044]">Donate</a>
           </nav>
           <form action="/books" className="mt-3 flex h-11 items-center gap-2 border border-[#dcd3c2] bg-white px-3">
             <Search size={18} aria-hidden="true" />
