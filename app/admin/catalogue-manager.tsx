@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { bookCategories } from '@/lib/categories'
 
 type Book = { id: string; title: string; author: string; category: string; description: string; price: number; originalPrice: number | null; cover: string; badge: string | null; stock: number; isArchived: boolean }
-const empty = { title: '', author: '', category: 'Indian Literature', description: '', price: '', originalPrice: '', cover: '', badge: '', stock: '0', isArchived: false }
+const empty = { title: '', author: '', category: bookCategories[0].value, description: '', price: '', originalPrice: '', cover: '', badge: '', stock: '0', isArchived: false }
 
 export function CatalogueManager({ initialBooks }: { initialBooks: Book[] }) {
   const [books, setBooks] = useState(initialBooks)
